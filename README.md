@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# How to Use Context API in react App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Step 1
 
-## Available Scripts
+### Make a Folder "Store or anyName" in "Src" folder.
 
-In the project directory, you can run:
+## Step 2
 
-### `npm start`
+### Make a file "NameOfFile-context.js" in store folder.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Step 3
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Make a arrow Function Named-> "NameOfFileContext" and export default it.
 
-### `npm test`
+### For Example :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const AuthContext = React.createContext({
+isLoggedIn: false, // your varibles or functions which you can use it in app Components
+});
 
-### `npm run build`
+export default AuthContext
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Step 4
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Now Make another arrow functional component named => "YourCotextNameProvider" and export it.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### For Example:
 
-### `npm run eject`
+export const AuthContextProvider = (props) => {
+const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+return (
+<AuthContext.Provider value={{ isLoggedIn: isLoggedIn }}>
+{props.children}
+</AuthContext.Provider>
+);
+};
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Step 5
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Now go to "index.js" file in "Src" Folder and import AuthContextProvider arrow component in it.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Step 6
 
-## Learn More
+### After it, Wrap this component to <App /> component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### For Example
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ReactDOM.render(
+<AuthContextProvider>
+<App />
+</AuthContextProvider>,
+document.getElementById("root")
+);
 
-### Code Splitting
+## Step 7
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Now you can use it context to any component of react.
 
-### Analyzing the Bundle Size
+### import AuthContext to any component and import useContext hook in any component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### For Example :
 
-### Making a Progressive Web App
+import AuthContext from "../Store/auth-context";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+const ctx = useContext(AuthContext);
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note : If you have still any query. Please let me know on www.asimmaqsood.cf

@@ -1,0 +1,14 @@
+nav {
+  border: 2px solid black;
+  height: 65px;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+}
+
+ul li {
+  list-style: none;
+  padding: 20px;
+}
